@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OP Dev. — Corporate Website
 
-## Getting Started
+Marketing website for OP DEV: home, services (with request forms), industries,
+case studies, insights, about and contact.
 
-First, run the development server:
+Built with Next.js 15 (App Router), Tailwind CSS 4, GSAP + Lenis for motion and
+React Three Fiber for the 3D logo.
+
+## Run locally
 
 ```bash
+npm install
+cp .env.example .env.local   # then fill in the values
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Name | Purpose |
+|---|---|
+| `RESEND_API_KEY` | Sends form submissions by email via [Resend](https://resend.com). Without it, leads are only logged. |
+| `INQUIRY_TO` | Where leads are delivered (default `info@opdev.ai`; comma-separate several). |
+| `INQUIRY_FROM` | Sender address on the verified domain. |
+| `NEXT_PUBLIC_BOOKING_URL` | Optional Cal.com / Calendly link shown on `/contact`. |
 
-## Learn More
+Never commit `.env.local` — it is git-ignored.
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy (Vercel)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Import this repository at https://vercel.com/new (framework: Next.js, defaults are fine).
+2. Add the environment variables above under **Settings → Environment Variables**.
+3. Deploy. Every push to `main` redeploys automatically.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Where things live
 
-## Deploy on Vercel
+- `src/app/` — routes (pages and the `/api/inquiry` form endpoint)
+- `src/content/` — page content as data (services, industries, case studies, insights) — ready to move to a CMS
+- `src/components/` — sections and UI; `visuals/` holds the interactive card drawings
+- `src/lib/` — scroll, 3D scene state, email, logo geometry
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Content still to confirm with the client
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Case studies are sample projects — replace with verified work.
+- Insight articles are first drafts for review.
+- Mission & vision on `/about` are drafts.
+- Heading font: Gordita (licensed) — Plus Jakarta Sans stands in until the files are supplied.
